@@ -11,5 +11,4 @@
   yojson
   zarith
   cstruct
-  hex
-  str))
+  hex))
