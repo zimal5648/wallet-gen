@@ -1,0 +1,15 @@
+(executable
+ (name main)
+ (modules main)
+ (libraries
+  digestif
+  mirage-crypto
+  mirage-crypto-ec
+  mirage-crypto-pk
+  mirage-crypto-rng
+  mirage-crypto-rng.unix
+  yojson
+  zarith
+  cstruct
+  hex
+  str))
