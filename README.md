@@ -11,6 +11,7 @@ This software is released under the **Octra Labs Proprietary Testnet License** (
 ```shell
 git clone https://github.com/octra-labs/wallet-gen.git
 cd wallet-gen
+eval $(opam env)
 opam install . --deps-only --yes
 dune build --profile release
 dune exec ./bin/main.exe
