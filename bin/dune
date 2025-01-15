@@ -2,6 +2,7 @@
  (name main)
  (modules main)
  (libraries
+  helpers
   digestif
   mirage-crypto
   mirage-crypto-ec
@@ -12,3 +13,14 @@
   zarith
   cstruct
   hex))
+
+(executable
+ (name verify)
+ (modules verify)
+ (libraries helpers mirage-crypto)
+ (flags -linkall))
+
+(library
+ (name helpers)
+ (modules helpers)
+ (libraries digestif mirage-crypto-ec))
