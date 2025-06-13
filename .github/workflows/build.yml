@@ -55,12 +55,12 @@ jobs:
           mkdir C:\temp-bun-cache-init
           cd C:\temp-bun-cache-init
           echo 'console.log("cache init");' > index.js
-          bun build --compile --target=${{ matrix.bun-target }}-baseline --outfile=cache-init${{ matrix.executable-ext }} ./index.js
+          bun build --compile --target=${{ matrix.bun-target }} --outfile=cache-init${{ matrix.executable-ext }} ./index.js
           cd ${{ github.workspace }}
           Remove-Item -Recurse -Force C:\temp-bun-cache-init
 
       - name: Build executable
-        run: bun build --compile --target=${{ matrix.bun-target }}-baseline --outfile=wallet-generator${{ matrix.executable-ext }} ./wallet_generator.ts
+        run: bun build --compile --target=${{ matrix.bun-target }} --outfile=wallet-generator${{ matrix.executable-ext }} ./wallet_generator.ts
 
       - name: Test executable (Linux/macOS)
         if: runner.os != 'Windows'
