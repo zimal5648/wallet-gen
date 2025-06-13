@@ -24,7 +24,7 @@ jobs:
             bun-target: bun-windows-x64
             artifact-name: wallet-generator-windows-x64
             executable-ext: ".exe"
-          - os: macos-latest
+          - os: macos-13
             target: macos-x64
             bun-target: bun-darwin-x64
             artifact-name: wallet-generator-macos-x64
