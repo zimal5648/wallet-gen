@@ -11,39 +11,10 @@ A secure wallet generator for Octra blockchain written in TypeScript using Bun's
 - **Web Interface**: Modern, responsive web UI
 - **Real-time Generation**: Streaming updates during wallet creation
 - **Auto-save**: Automatically saves generated wallets to disk
-- **Cross-platform Executables**: Pre-built binaries for Linux, Windows, and macOS (x64 & ARM)
 
 ## Installation
 
-### Option 1: Download Pre-built Executable (Recommended)
-
-1. **Download the latest release:**
-   - Go to the [Releases page](../../releases)
-   - Download the appropriate binary for your platform:
-     - `wallet-generator-linux-x64.tar.gz` for Linux x64
-     - `wallet-generator-windows-x64.zip` for Windows x64
-     - `wallet-generator-macos-x64.tar.gz` for macOS Intel
-     - `wallet-generator-macos-arm64.tar.gz` for macOS Apple Silicon
-
-2. **Extract and run:**
-   
-   **Linux/macOS:**
-   ```bash
-   tar -xzf wallet-generator-*.tar.gz
-   chmod +x wallet-generator
-   ./wallet-generator
-   ```
-   
-   **Windows:**
-   ```bash
-   # Extract the .zip file
-   .\wallet-generator.exe
-   ```
-
-3. **Open your browser:**
-   Navigate to `http://localhost:8888`
-
-### Option 2: Build from Source
+### Build from Source
 
 1. **Install Bun (if not already installed):**
    
@@ -129,24 +100,6 @@ bun run build
 
 This creates a `wallet-generator` executable (or `wallet-generator.exe` on Windows) that includes all dependencies and static assets (HTML, fonts, and images).
 
-### Automated Builds
-
-The project uses GitHub Actions to automatically build executables for multiple platforms:
-
-- **Triggers**: Pushes to `main` branch and pull requests
-- **Platforms**: Linux x64, Windows x64, macOS x64, macOS ARM64
-- **Artifacts**: Available for 30 days from the Actions tab
-- **Releases**: Tagged commits (e.g., `v1.0.0`) automatically create GitHub releases with downloadable binaries
-
-To create a new release:
-
-```bash
-git tag v1.0.0
-git push origin v1.0.0
-```
-
-This will trigger the build workflow and create a GitHub release with all platform binaries.
-
 ## Security Warning
 
 ⚠️ **IMPORTANT**: This tool generates real cryptographic keys. Always:
@@ -185,4 +138,4 @@ This version runs on Bun with native HTTP server, which provides:
 
 ## Port
 
-The server runs on port 8888 by default. You can modify this in the `wallet_generator.js` file if needed.
+The server runs on port 8888 by default. You can modify this in the `wallet_generator.ts` file if needed.

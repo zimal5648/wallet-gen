@@ -281,7 +281,7 @@ function createOctraAddress(publicKey: Buffer): string {
 // Verify address format
 function verifyAddressFormat(address: string): boolean {
   if (!address.startsWith("oct")) return false;
-  if (address.length < 20 || address.length > 50) return false;
+  if (address.length !== 47) return false;
 
   const base58Part: string = address.slice(3);
   for (const char of base58Part) {
