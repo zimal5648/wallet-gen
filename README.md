@@ -11,10 +11,41 @@ A secure wallet generator for Octra blockchain written in TypeScript using Bun's
 - **Web Interface**: Modern, responsive web UI
 - **Real-time Generation**: Streaming updates during wallet creation
 - **Auto-save**: Automatically saves generated wallets to disk
+- **Cross-platform Executables**: Pre-built binaries for Linux, Windows, and macOS (x64 & ARM)
 
 ## Installation
 
-### Build from Source
+### Option 1: Download Pre-built Executable (Recommended)
+
+1. **Download the latest release:**
+   - Go to the [Releases page](../../releases)
+   - Download the appropriate binary for your platform:
+     - `wallet-generator-linux-x64.tar.gz` for Linux x64
+     - `wallet-generator-windows-x64.zip` for Windows x64
+     - `wallet-generator-macos-x64.tar.gz` for macOS Intel
+     - `wallet-generator-macos-arm64.tar.gz` for macOS Apple Silicon
+
+2. **Extract and run:**
+   
+   **Linux/macOS:**
+   ```bash
+   tar -xzf wallet-generator-*.tar.gz
+   chmod +x wallet-generator
+   # On macOS, you may need to remove quarantine flag to run unsigned binary:
+   xattr -r -d com.apple.quarantine wallet-generator
+   ./wallet-generator
+   ```
+   
+   **Windows:**
+   ```bash
+   # Extract the .zip file
+   .\wallet-generator.exe
+   ```
+
+3. **Open your browser:**
+   Navigate to `http://localhost:8888`
+
+### Option 2: Build from Source
 
 1. **Install Bun (if not already installed):**
    
