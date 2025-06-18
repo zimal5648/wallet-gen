@@ -5,23 +5,24 @@ import { fileURLToPath } from "url";
 import nacl from "tweetnacl";
 import bip39 from "bip39";
 
+import indexHtml from "./index.html" with { type: "text" };
+import logoSvg from "./assets/logo.svg" with { type: "text" };
+import foundersGroteskFontPath from "./assets/founders-grotesk-bold.woff2" with { type: "file" };
+import nationalFontPath from "./assets/national-regular.woff2" with { type: "file" };
+
 // ESM equivalent of __dirname
 const __filename: string = fileURLToPath(import.meta.url);
 const __dirname: string = path.dirname(__filename);
 
 // Embed static assets for executable builds
-let indexHtml: string = "";
-let logoSvg: string = "";
 let foundersGroteskFont: ArrayBuffer;
 let nationalFont: ArrayBuffer;
 
 // Load assets asynchronously
 async function loadAssets() {
   try {
-    indexHtml = await Bun.file("index.html").text();
-    logoSvg = await Bun.file("assets/logo.svg").text();
-    foundersGroteskFont = await Bun.file("assets/founders-grotesk-bold.woff2").arrayBuffer();
-    nationalFont = await Bun.file("assets/national-regular.woff2").arrayBuffer();
+    foundersGroteskFont = await Bun.file(foundersGroteskFontPath).arrayBuffer();
+    nationalFont = await Bun.file(nationalFontPath).arrayBuffer();
   } catch (error) {
     console.warn("Could not load embedded assets:", error.message);
     // Assets will be served from filesystem instead
@@ -231,13 +232,13 @@ function deriveForNetwork(
   const coinType: number = networkType === 0 ? 0 : networkType;
 
   const basePath: number[] = [
-    0x80000000 | 345, // Purpose
-    0x80000000 | coinType, // Coin type
-    0x80000000 | network, // Network
+    0x80000000 + 345, // Purpose
+    0x80000000 + coinType, // Coin type
+    0x80000000 + network, // Network
   ];
 
-  const contractPath: number[] = [0x80000000 | contract, 0x80000000 | account];
-  const optionalPath: number[] = [0x80000000 | token, 0x80000000 | subnet];
+  const contractPath: number[] = [0x80000000 + contract, 0x80000000 + account];
+  const optionalPath: number[] = [0x80000000 + token, 0x80000000 + subnet];
   const finalPath: number[] = [index];
 
   const fullPath: number[] = [
@@ -609,33 +610,30 @@ function serveEmbeddedAsset(pathname: string): Response | null {
         });
       }
       break;
-    
+
     case '/assets/logo.svg':
-    case '/logo.svg':
       if (logoSvg) {
         return new Response(logoSvg, {
           headers: { 'Content-Type': 'image/svg+xml' }
         });
       }
       break;
-    
+
     case '/assets/founders-grotesk-bold.woff2':
-    case '/founders-grotesk-bold.woff2':
       if (foundersGroteskFont) {
         return new Response(foundersGroteskFont, {
-          headers: { 
+          headers: {
             'Content-Type': 'font/woff2',
             'Cache-Control': 'public, max-age=31536000'
           }
         });
       }
       break;
-    
+
     case '/assets/national-regular.woff2':
-    case '/national-regular.woff2':
       if (nationalFont) {
         return new Response(nationalFont, {
-          headers: { 
+          headers: {
             'Content-Type': 'font/woff2',
             'Cache-Control': 'public, max-age=31536000'
           }
@@ -643,7 +641,7 @@ function serveEmbeddedAsset(pathname: string): Response | null {
       }
       break;
   }
-  
+
   return null;
 }
 
