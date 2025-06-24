@@ -239,13 +239,9 @@
         
         .field-label {
             font-family: 'National', sans-serif;
-            font-size: 14px;
+            font-size: 16px;
             line-height: 20px;
             font-weight: 400;
-            color: var(--text-inverted-color);
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
             flex-basis: 200px;
         }
         
@@ -414,12 +410,12 @@
             </div>
             
             <div class="wallet-field">
-                <div class="field-label">MNEMONIC (12 WORDS)</div>
+                <div class="field-label">mnemonic (12 words)</div>
                 <div class="field-value" id="mnemonic"></div>
             </div>
             
             <div class="wallet-field">
-                <div class="field-label">PRIVATE KEY</div>
+                <div class="field-label">private key</div>
                 <div class="field-value">
                     Raw: <span id="privateKeyRaw"></span><br>
                     B64: <span id="privateKeyB64"></span>
@@ -427,7 +423,7 @@
             </div>
             
             <div class="wallet-field">
-                <div class="field-label">PUBLIC KEY</div>
+                <div class="field-label">public key</div>
                 <div class="field-value">
                     Raw: <span id="publicKeyRaw"></span><br>
                     B64: <span id="publicKeyB64"></span>
@@ -435,12 +431,12 @@
             </div>
             
             <div class="wallet-field">
-                <div class="field-label">OCTRA ADDRESS</div>
+                <div class="field-label">octra addres</div>
                 <div class="field-value" id="address"></div>
             </div>
             
             <div class="wallet-field">
-                <div class="field-label">TECHNICAL INFORMATION</div>
+                <div class="field-label">technical information</div>
                 <div class="field-value">
                     Entropy: <span id="entropy"></span><br>
                     Seed: <span id="seed"></span><br>
@@ -449,7 +445,7 @@
             </div>
             
             <div class="wallet-field">
-                <div class="field-label">SIGNATURE TEST</div>
+                <div class="field-label">signature test</div>
                 <div class="field-value">
                     Message: <span id="testMessage"></span><br>
                     Signature: <span id="testSignature"></span><br>
@@ -458,7 +454,7 @@
             </div>
             
             <div class="wallet-field">
-                <div class="field-label">HD DERIVATION</div>
+                <div class="field-label">HD derivation</div>
                 <div class="field-value inputs">
                     <label>Network Type: 
                         <select id="networkType">
@@ -481,7 +477,7 @@
             </div>
             
             <div class="wallet-field" id="saveInfo" style="display: none;">
-                <div class="field-label">FILE SAVED</div>
+                <div class="field-label">file saved</div>
                 <div class="field-value">
                     Filename: <span id="savedFilename"></span><br>
                     Location: In the same directory as this script
