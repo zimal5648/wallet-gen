@@ -42,7 +42,7 @@
             --gray-60: #313131;
             --gray-70: #222222;
             --gray-80: #181818;
-            
+
             --orange-10: #ffeec2;
             --orange-20: #fcb73e;
             --orange-30: #ef8b17;
@@ -56,7 +56,7 @@
             --border-color-500: #15151566;
             
             /* Legacy variables for compatibility */
-            --background-default-color: #0a0a0a;
+            --background-default-color: #181818;
             --background-primary-color: var(--blue-50-base);
             --text-primary-color: var(--button-primary-text);
             --text-inverted-color: var(--button-primary-text);
@@ -82,7 +82,7 @@
         }
         
         .container {
-            max-width: 900px;
+            max-width: 1024px;
             width: 100%;
             padding: 20px;
         }
@@ -102,6 +102,7 @@
             font-size: 36px;
             line-height: 42px;
             font-weight: 700;
+            margin-bottom: 16px;
         }
         
         h5 {
@@ -201,14 +202,17 @@
             outline-offset: -2px;
             border: 1px solid var(--gray-0);
         }
+
+        .button.fullwidth {
+            width: 100%;
+        }
         
         .status {
-            margin: 40px 0;
+            margin: 40px 0 16px;
             padding: 20px;
             background-color: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-color);
-            border-radius: 4px;
-            min-height: 300px;
+            min-height: 104px;
             white-space: pre-wrap;
             overflow-y: auto;
             max-height: 400px;
@@ -227,11 +231,10 @@
         
         .wallet-field {
             margin: 20px 0;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            word-break: break-all;
+            display: flex;
+            flex-direction: row;
+            box-sizing: border-box;
+            gap: 24px;
         }
         
         .field-label {
@@ -243,6 +246,7 @@
             margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            flex-basis: 200px;
         }
         
         .field-value {
@@ -250,22 +254,33 @@
             font-size: 14px;
             line-height: 18px;
             font-weight: 400;
+            word-break: break-all;
+            width: 100%;
+        }
+
+        .field-value.inputs {
+            margin-top: -12px;
         }
         
         .warning {
-            background-color: var(--orange-10);
-            color: var(--orange-80);
-            padding: 20px;
-            border: 1px solid var(--orange-30);
-            border-radius: 0;
+            background-color: var(--orange-80);
+            color: var(--text-inverted-color);
+            padding: 12px 16px 12px 36px;
             margin: 20px 0;
-            text-align: center;
             font-family: 'National', sans-serif;
-            font-size: 14px;
+            position: relative;
+            font-size: 16px;
             line-height: 20px;
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+        }
+
+        .warning::before {
+            content: '';
+            position: absolute;
+            background: url('assets/icon-warning.svg') 0 0 no-repeat;
+            width: 16px;
+            height: 16px;
+            left: 12px;
+            top: 14px;
         }
         
         .address-info {
@@ -303,7 +318,7 @@
             padding: 6px 12px;
             font-size: 16px;
             line-height: 24px;
-            margin-left: 10px;
+            margin-left: 4px;
             min-height: 36px;
         }
         
@@ -374,26 +389,28 @@
         #derivedAddress {
             margin-top: 15px;
             padding: 10px;
-            background-color: rgba(0, 51, 255, 0.1);
-            border: 1px solid var(--background-primary-color);
-            border-radius: 4px;
+            background-color: var(--gray-60);
+            width: 100%;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>OCTRA WALLET GENERATOR</h1>
-        
-        <div style="text-align: center;">
-            <button id="generateBtn" class="button" onclick="generateWallet()">GENERATE NEW WALLET</button>
-        </div>
-        
-        <div class="status" id="status">Ready to generate wallet...</div>
+        <h1>octra wallet generation</h1>
+
+        <div class="main">
+        <div>
+            <div class="status" id="status">Ready to generate wallet...</div>
+            
+            <div style="text-align: center;">
+                <button id="generateBtn" class="button size-large fullwidth" onclick="generateWallet()">generate new wallet</button>
+            </div>
+        </div>    
         
         <div class="wallet-info" id="walletInfo">
+            <h3>your wallet</h3>
             <div class="warning">
-                WARNING: DO NOT STORE THIS FILE ONLINE OR ON CLOUD SERVICES<br>
-                KEEP YOUR PRIVATE KEY SECURE AND NEVER SHARE IT
+                do not store this file online or on cloud services, keep your private key secure and never share it!
             </div>
             
             <div class="wallet-field">
@@ -442,7 +459,7 @@
             
             <div class="wallet-field">
                 <div class="field-label">HD DERIVATION</div>
-                <div class="field-value">
+                <div class="field-value inputs">
                     <label>Network Type: 
                         <select id="networkType">
                             <option value="0">MainCoin</option>
@@ -455,7 +472,7 @@
                     <label style="margin-left: 10px;">Index: 
                         <input type="number" id="derivationIndex" value="0" min="0" max="100" style="width: 60px;">
                     </label>
-                    <button class="button derive-button" onclick="derivePath()">DERIVE</button>
+                    <button class="button derive-button" onclick="derivePath()">derive</button>
                     <div id="derivedAddress" style="display: none;">
                         Derived Address: <span id="derivedAddressValue"></span><br>
                         Path: <span id="derivedPath"></span>
@@ -470,6 +487,7 @@
                     Location: In the same directory as this script
                 </div>
             </div>
+        </div>
         </div>
     </div>
     
@@ -603,7 +621,7 @@
                     updateStatus('Wallet saved to: ' + result.filename);
                     
                     document.getElementById('savedFilename').textContent = result.filename;
-                    document.getElementById('saveInfo').style.display = 'block';
+                    document.getElementById('saveInfo').style.display = 'flex';
                 } else {
                     updateStatus('ERROR: Failed to save wallet');
                 }
