@@ -26,14 +26,8 @@ install_bun() {
     else
         echo "Installing Bun..."
         curl -fsSL https://bun.sh/install | bash
-        
-        # Source the shell profile to make bun available
-        if [[ -f ~/.bashrc ]]; then
-            source ~/.bashrc
-        elif [[ -f ~/.zshrc ]]; then
-            source ~/.zshrc
-        fi
-        
+        # Set PATH to include Bun’s binary directory
+        export PATH="$HOME/.bun/bin:$PATH"
         echo "Bun installed successfully!"
     fi
 }
