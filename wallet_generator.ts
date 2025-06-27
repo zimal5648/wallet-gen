@@ -714,4 +714,3 @@ const server = Bun.serve({
 });
 
 console.log("OCTRA Wallet Generator Web Server");
-console.log(`Starting server on http://localhost:${server.port}`);
