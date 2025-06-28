@@ -65,12 +65,18 @@ sleep 2
 
 # Open browser
 echo "Opening browser at http://localhost:8888"
+
+BROWSER_CMD=""
 if command -v open &> /dev/null; then
     # macOS
-    open http://localhost:8888
+    BROWSER_CMD="open"
 elif command -v xdg-open &> /dev/null; then
     # Linux
-    xdg-open http://localhost:8888
+    BROWSER_CMD="xdg-open"
+fi
+
+if [ -n "$BROWSER_CMD" ]; then
+    $BROWSER_CMD http://localhost:8888 2>/dev/null || echo "Could not automatically open browser. Please manually open http://localhost:8888"
 else
     echo "Please manually open http://localhost:8888 in your browser"
 fi
