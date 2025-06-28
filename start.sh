@@ -26,7 +26,7 @@ install_bun() {
     else
         echo "Installing Bun..."
         curl -fsSL https://bun.sh/install | bash
-        # Set PATH to include Bun’s binary directory
+        # Set PATH to include Bun's binary directory
         export PATH="$HOME/.bun/bin:$PATH"
         echo "Bun installed successfully!"
     fi
@@ -46,6 +46,12 @@ bun install
 echo ""
 echo "Building standalone executable..."
 bun run build
+
+if [ ! -f "./wallet-generator" ]; then
+    echo "❌ Error: wallet-generator executable not found!"
+    echo "Build may have failed. Please check the build output above."
+    exit 1
+fi
 
 echo ""
 echo "Build complete!"
